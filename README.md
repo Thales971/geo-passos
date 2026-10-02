@@ -20,7 +20,7 @@ npx expo start
 
 - App em branco do `create-expo-app`
 - `components/CardLocalizacao.js`
-- `components/CardPassos.js`, cortado na permissão do pedômetro
+- `components/CardPassos.js`, cortado no cálculo da meta de 10.000 passos
 
 Não completei o resto do card de passos.
 
