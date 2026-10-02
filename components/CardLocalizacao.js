@@ -305,3 +305,29 @@ enderecoLabel: {
     letterSpacing: 0.5,
     marginBottom: 2,
   },
+          coordValor: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  mensagemAlerta: {
+    fontSize: 13,
+    color: '#DC2626',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  botaoEscuro: {
+    backgroundColor: '#0F172A',
+    borderRadius: 14,
+    paddingVertical: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textoBotaoEscuro: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  botaoOutline: {
+    backgroundColor: '#FFFFFF',
