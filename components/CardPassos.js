@@ -207,3 +207,26 @@ function zerarPassos() {
     ativo ? styles.botaoVermelho : styles.botaoVerde,
     pressed && styles.botaoPressionado,
   ]}
+onPress={alternarContador}
+  {ativo ? (
+    <Ionicons
+      name="square"
+      size={14}
+      color="#FFFFFF"
+      style={styles.btnIcon}
+    />
+  ) : (
+    <Ionicons
+      name="play"
+      size={15}
+      color="#FFFFFF"
+      style={styles.btnIcon}
+    />
+  )}
+  <Text style={styles.textoBotao}>
+    {ativo ? 'Parar contador' : 'Iniciar contador'}
+  </Text>
+</Pressable>
+
+{/* Botão para Zerar */}
+{passos > 0 && !ativo ? (
