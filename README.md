@@ -20,7 +20,7 @@ npx expo start
 
 - App em branco do `create-expo-app`
 - `components/CardLocalizacao.js`
-- `components/CardPassos.js`, cortado em `setTipoSensor('pedometer')`
+- `components/CardPassos.js`, cortado em `iniciarComAcelerometro`
 
 Não completei o resto do card de passos.
 
