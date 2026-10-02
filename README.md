@@ -19,8 +19,9 @@ npx expo start
 ## O que já está no repo
 
 - App em branco do `create-expo-app`
-- `components/CardLocalizacao.js` com a versão que checa GPS, permissão e abre o mapa
+- `components/CardLocalizacao.js`
+- `components/CardPassos.js`, cortado em `setTipoSensor('pedometer')`
 
-As duas linhas de precisão e número continuam sem crase, do jeito que vieram no trecho.
+Não completei o resto do card de passos.
 
 Autor: Thales Torsatto
