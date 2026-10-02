@@ -145,8 +145,51 @@ function zerarPassos() {
         <Text style={styles.passosSubtexto}>passos</Text>
       </View>
 
-      {/* Barra de Progresso */}
-      <View style={styles.progressTrack}>
-        <View
-          style={[
-            styles.progressBar,
+     {/* Barra de Progresso */}
+<View style={styles.progressTrack}>
+  <View
+    style={[
+      styles.progressBar,
+      { width: ${Math.max(porcentagemMeta, 3)}% },
+    ]}
+  />
+</View>
+
+{/* Status do Sensor em Pílula */}
+<View style={styles.statusPill}>
+  {tipoSensor === 'accelerometer' ? (
+    <>
+      <Feather
+        name="zap"
+        size={13}
+        color="#F59E0B"
+        style={styles.pillIconLeft}
+      />
+      <Text style={styles.statusPillTexto}>
+                            Acelerômetro • Motorola Edge 30 Neo
+                            </Text>
+      <Feather
+        name="check"
+        size={13}
+        color="#10B981"
+        style={styles.pillIconRight}
+      />
+    </>
+  ) : tipoSensor === 'pedometer' ? (
+    <>
+      <Ionicons
+        name="footsteps"
+        size={13}
+        color="#10B981"
+        style={styles.pillIconLeft}
+      />
+      <Text style={styles.statusPillTexto}>
+        Pedômetro Nativo • Hardware
+      </Text>
+      <Feather
+        name="check"
+        size={13}
+        color="#10B981"
+        style={styles.pillIconRight}
+      />
+    </>
