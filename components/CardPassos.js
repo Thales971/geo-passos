@@ -193,3 +193,17 @@ function zerarPassos() {
         style={styles.pillIconRight}
       />
     </>
+    ) : (
+    <Text style={styles.statusPillTexto}>Identificando sensor...</Text>
+  )}
+</View>
+
+{mensagem ? <Text style={styles.mensagemAlerta}>{mensagem}</Text> : null}
+
+{/* Botão de Ação: Iniciar / Parar */}
+<Pressable
+  style={({ pressed }) => [
+    styles.botao,
+    ativo ? styles.botaoVermelho : styles.botaoVerde,
+    pressed && styles.botaoPressionado,
+  ]}
