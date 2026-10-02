@@ -287,3 +287,21 @@ enderecoLabel: {
   coordenadasRow: {
     flexDirection: 'row',
     gap: 12,
+    marginBottom: 16,
+  },
+  coordBox: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#F1F5F9',
+    borderRadius: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+  },
+  coordLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#94A3B8',
+    letterSpacing: 0.5,
+    marginBottom: 2,
+  },
