@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#EFF6FF',
     alignItems: 'center',
-    justify: 'center',
+    justifyContent: 'center',
     marginRight: 10,
   },
   cardTitulo: {
