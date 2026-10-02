@@ -122,4 +122,31 @@ function zerarPassos() {
 }
 
 // Cálculo da porcentagem da meta de 10.000 passos
-const porcentagemMeta = Math.min((passos / 10000) * 100, 100);
+    const porcentagemMeta = Math.min((passos / 10000) * 100, 100);
+
+    return (
+    <View style={styles.card}>
+      {/* Cabeçalho do Card */}
+      <View style={styles.cardHeader}>
+        <View style={styles.cardTituloWrapper}>
+          <View style={styles.iconBadgeVerde}>
+            <Feather name="zap" size={17} color="#10B981" />
+          </View>
+          <Text style={styles.cardTitulo}>Contador de Passos</Text>
+        </View>
+
+        <Text style={styles.metaTexto}>Meta: 10.000</Text>
+      </View>
+
+      {/* Contagem Principal */}
+      <View style={styles.centroContainer}>
+        <Text style={styles.dadoLabel}>PASSOS REALIZADOS</Text>
+        <Text style={styles.passosDestaque}>{passos}</Text>
+        <Text style={styles.passosSubtexto}>passos</Text>
+      </View>
+
+      {/* Barra de Progresso */}
+      <View style={styles.progressTrack}>
+        <View
+          style={[
+            styles.progressBar,
