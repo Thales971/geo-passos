@@ -19,8 +19,8 @@ npx expo start
 ## O que já está no repo
 
 - App em branco do `create-expo-app`
-- `components/CardLocalizacao.js` com o trecho enviado até agora
+- `components/CardLocalizacao.js` com o trecho mais novo do card
 
-O card ainda está cortado em `const dados = respostaEndereco[0];`. Não completei o resto.
+O card ainda corta no `Pressable` do botão de obter localização. Não completei o resto.
 
 Autor: Thales Torsatto
