@@ -233,5 +233,57 @@ cardHeader: {
     fontWeight: '700',
     color: '#0F172A',
   },
-  precisaoBadge: {
+precisaoBadge: {
     flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F1F5F9',
+    borderRadius: 20,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  precisaoDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: '#10B981',
+    marginRight: 6,
+  },
+  precisaoTexto: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#475569',
+  },
+  enderecoContainer: {
+    backgroundColor: '#F8FAFC',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#E1F5F9',
+    padding: 16,
+    marginBottom: 14,
+  },
+enderecoLabel: {
+    fontSize: 11,
+    fontWeight: '800',
+    color: '#2563EB',
+    letterSpacing: 0.6,
+    marginBottom: 4,
+  },
+  enderecoRua: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  enderecoPlaceholder: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#64748B',
+  },
+  enderecoSubtexto: {
+    fontSize: 13,
+    color: '#64748B',
+    marginTop: 3,
+    fontWeight: '500',
+  },
+  coordenadasRow: {
+    flexDirection: 'row',
+    gap: 12,
