@@ -20,7 +20,7 @@ npx expo start
 
 - App em branco do `create-expo-app`
 - `components/CardLocalizacao.js`
-- `components/CardPassos.js`, cortado no botão de iniciar e parar
+- `components/CardPassos.js`, cortado no botão de zerar
 
 Não completei o resto do card de passos.
 
