@@ -209,3 +209,29 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     elevation: 2,
   },
+cardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 18,
+  },
+  cardTituloWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconBadgeAzul: {
+    width: 34,
+    height: 34,
+    borderRadius: 10,
+    backgroundColor: '#EFF6FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+  cardTitulo: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#0F172A',
+  },
+  precisaoBadge: {
+    flexDirection: 'row',
