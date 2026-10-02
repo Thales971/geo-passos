@@ -21,6 +21,6 @@ npx expo start
 - App em branco do `create-expo-app`
 - `components/CardLocalizacao.js` com o trecho mais novo do card
 
-O card fecha os dois botões e corta no estilo `card` do `StyleSheet`. Não completei o resto.
+O card corta no estilo `precisaoBadge`. Não completei o resto.
 
 Autor: Thales Torsatto
