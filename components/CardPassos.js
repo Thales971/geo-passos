@@ -26,3 +26,27 @@ export default function CardPassos() {
             if (perm.granted) {
               setTipoSensor('pedometer');
               return;
+                } else {
+            setTipoSensor('pedometer');
+            return;
+          }
+        }
+        setTipoSensor('accelerometer');
+      } catch {
+        setTipoSensor('accelerometer');
+      }
+    }
+
+    detectarMelhorSensor();
+
+    return () => {
+      if (subscription) {
+        subscription.remove();
+      }
+    };
+  }, [subscription]);
+
+  function iniciarComAcelerometro() {
+    try {
+      setTipoSensor('accelerometer');
+      setMensagem('');
