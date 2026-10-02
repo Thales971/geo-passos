@@ -142,3 +142,70 @@ export default function CardLocalizacao() {
         style={({ pressed }) => [
           styles.botaoEscuro,
           pressed && styles.botaoPressionado,
+        ]}
+        onPress={obterLocalizacao}
+        disabled={carregando}
+      >
+        {carregando ? (
+          <Ionicons
+            name="hourglass-outline"
+            size={17}
+            color="#FFFFFF"
+            style={styles.btnIcon}
+          />
+        ) : (
+          <Ionicons
+            name="time-outline"
+            size={17}
+            color="#FFFFFF"
+            style={styles.btnIcon}
+          />
+        )}
+        <Text style={styles.textoBotaoEscuro}>
+          {carregando ? 'Buscando GPS...' : 'Obter localização'}
+        </Text>
+        </Pressable>
+
+{/* Botão Secundário: Ver no Google Maps */}
+      <Pressable
+        style={({ pressed }) => [
+          styles.botaoOutline,
+          !latitude && styles.botaoDesabilitado,
+          pressed && latitude && styles.botaoPressionado,
+        ]}
+        onPress={abrirNoMapa}
+        disabled={!latitude}
+      >
+        <Feather
+          name="map"
+          size={16}
+          color={latitude ? '#059669' : '#94A3B8'}
+          style={styles.btnIcon}
+        />
+        <Text
+          style={[
+            styles.textoBotaoOutline,
+            !latitude && styles.textoDesabilitado,
+        ]}
+        >
+          Ver no Google Maps
+        </Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#F1F5F9',
+    shadowColor: '#0F172A',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.04,
+    shadowRadius: 16,
+    elevation: 2,
+  },
