@@ -21,6 +21,6 @@ npx expo start
 - App em branco do `create-expo-app`
 - `components/CardLocalizacao.js` com o trecho mais novo do card
 
-O card corta no estilo `coordenadasRow`. Não completei o resto.
+O card corta no estilo `coordLabel`. Não completei o resto.
 
 Autor: Thales Torsatto
