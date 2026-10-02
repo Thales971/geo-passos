@@ -32,49 +32,50 @@ export default function CardLocalizacao() {
       const lat = localizacao.coords.latitude;
       const lon = localizacao.coords.longitude;
 
-        setLatitude(lat);
-        setLongitude(lon);
-        setPrecisao(
+      setLatitude(lat);
+      setLongitude(lon);
+      setPrecisao(
         localizacao.coords.accuracy
-        ? Math.round(localizacao.coords.accuracy)
-        : null
-);
+          ? Math.round(localizacao.coords.accuracy)
+          : null
+      );
 
-    // Geocodificação reversa
-        try {
-    const respostaEndereco = await Location.reverseGeocodeAsync({
-    latitude: lat,
-    longitude: lon,
-  });
+      // Geocodificação reversa
+      try {
+        const respostaEndereco = await Location.reverseGeocodeAsync({
+          latitude: lat,
+          longitude: lon,
+        });
 
-  if (respostaEndereco && respostaEndereco.length > 0) {
-      const dados = respostaEndereco[0];
-      setEndereco({
-        rua: dados.street || dados.name || 'Localização Atual',
-        numero: dados.streetNumber || '',
-        bairro: dados.district || dados.subregion || '',
-        cidade: dados.city || dados.subregion || '',
-        estado: dados.region || '',
-      });
-    }
-  } catch (errGeo) {
-    console.log('Erro na geocodificação reversa:', errGeo);
-  }
-} catch (error) {
-  console.log(error);
-  setMensagem('Não foi possível obter sua localização. Verifique o GPS.');
-} finally {
-  setCarregando(false);
-}
-
-      function abrirNoMapa() {
-          if (latitude && longitude) {
-              const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-              Linking.openURL(url);
-          }
+        if (respostaEndereco && respostaEndereco.length > 0) {
+          const dados = respostaEndereco[0];
+          setEndereco({
+            rua: dados.street || dados.name || 'Localização Atual',
+            numero: dados.streetNumber || '',
+            bairro: dados.district || dados.subregion || '',
+            cidade: dados.city || dados.subregion || '',
+            estado: dados.region || '',
+          });
+        }
+      } catch (errGeo) {
+        console.log('Erro na geocodificação reversa:', errGeo);
       }
+    } catch (error) {
+      console.log(error);
+      setMensagem('Não foi possível obter sua localização. Verifique o GPS.');
+    } finally {
+      setCarregando(false);
+    }
+  }
 
-      return (
+  function abrirNoMapa() {
+    if (latitude && longitude) {
+      const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+      Linking.openURL(url);
+    }
+  }
+
+  return (
     <View style={styles.card}>
       {/* Cabeçalho do Card */}
       <View style={styles.cardHeader}>
@@ -93,7 +94,7 @@ export default function CardLocalizacao() {
         </View>
       </View>
 
-{/* Caixa de Endereço Identificado */}
+      {/* Caixa de Endereço Identificado */}
       <View style={styles.enderecoContainer}>
         <Text style={styles.enderecoLabel}>ENDEREÇO IDENTIFICADO</Text>
         {endereco ? (
@@ -117,8 +118,10 @@ export default function CardLocalizacao() {
               Toque no botão abaixo para buscar via GPS
             </Text>
           </>
-                  )}
-    {/* Linha com Latitude e Longitude */}
+        )}
+      </View>
+
+      {/* Linha com Latitude e Longitude */}
       <View style={styles.coordenadasRow}>
         <View style={styles.coordBox}>
           <Text style={styles.coordLabel}>LATITUDE</Text>
@@ -164,9 +167,9 @@ export default function CardLocalizacao() {
         <Text style={styles.textoBotaoEscuro}>
           {carregando ? 'Buscando GPS...' : 'Obter localização'}
         </Text>
-        </Pressable>
+      </Pressable>
 
-{/* Botão Secundário: Ver no Google Maps */}
+      {/* Botão Secundário: Ver no Google Maps */}
       <Pressable
         style={({ pressed }) => [
           styles.botaoOutline,
@@ -186,7 +189,7 @@ export default function CardLocalizacao() {
           style={[
             styles.textoBotaoOutline,
             !latitude && styles.textoDesabilitado,
-        ]}
+          ]}
         >
           Ver no Google Maps
         </Text>
@@ -209,7 +212,7 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     elevation: 2,
   },
-cardHeader: {
+  cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -233,7 +236,7 @@ cardHeader: {
     fontWeight: '700',
     color: '#0F172A',
   },
-precisaoBadge: {
+  precisaoBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F1F5F9',
@@ -261,7 +264,7 @@ precisaoBadge: {
     padding: 16,
     marginBottom: 14,
   },
-enderecoLabel: {
+  enderecoLabel: {
     fontSize: 11,
     fontWeight: '800',
     color: '#2563EB',
@@ -305,7 +308,7 @@ enderecoLabel: {
     letterSpacing: 0.5,
     marginBottom: 2,
   },
-          coordValor: {
+  coordValor: {
     fontSize: 16,
     fontWeight: '700',
     color: '#0F172A',
@@ -331,3 +334,31 @@ enderecoLabel: {
   },
   botaoOutline: {
     backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
+    borderRadius: 14,
+    paddingVertical: 13,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  textoBotaoOutline: {
+    color: '#0F172A',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  textoDesabilitado: {
+    color: '#94A3B8',
+  },
+  btnIcon: {
+    marginRight: 8,
+  },
+  botaoDesabilitado: {
+    opacity: 0.5,
+  },
+  botaoPressionado: {
+    opacity: 0.85,
+    transform: [{ scale: 0.985 }],
+  },
+});
