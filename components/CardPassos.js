@@ -96,6 +96,30 @@ async function alternarContador() {
       if (Pedometer.requestPermissionsAsync) {
         const permissao = await Pedometer.requestPermissionsAsync();
           if (!permissao.granted) {
-              iniciarComAcelerometro();
-              return;
-          }
+          iniciarComAcelerometro();
+          return;
+        }
+      }
+
+      const novaSubscricao = Pedometer.watchStepCount((result) => {
+        setPassos(result.steps);
+      });
+
+      setSubscription(novaSubscricao);
+      setAtivo(true);
+      return;
+    } catch {
+      iniciarComAcelerometro();
+      return;
+    }
+  }
+
+  iniciarComAcelerometro();
+}
+
+function zerarPassos() {
+  setPassos(0);
+}
+
+// Cálculo da porcentagem da meta de 10.000 passos
+const porcentagemMeta = Math.min((passos / 10000) * 100, 100);
