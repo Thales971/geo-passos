@@ -1,5 +1,13 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, Pressable, Linking } from 'react-native';
+import React, { useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Linking,
+  ActivityIndicator,
+  Alert,
+} from 'react-native';
 import * as Location from 'expo-location';
 import { Ionicons, Feather } from '@expo/vector-icons';
 
@@ -16,15 +24,21 @@ export default function CardLocalizacao() {
       setCarregando(true);
       setMensagem('');
 
-      // Solicita permissão para acessar a localização
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      // 1. Verifica se os serviços de localização (GPS) estão ativados no dispositivo
+      const gpsAtivo = await Location.isLocationServicesEnabledAsync();
+      if (!gpsAtivo) {
+        setMensagem('O GPS do dispositivo está desligado. Ative-o para continuar.');
+        return;
+      }
 
+      // 2. Solicita permissão para acessar a localização
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setMensagem('Permissão de localização negada.');
         return;
       }
 
-      // Obtém a posição geográfica atual do celular via GPS
+      // 3. Obtém a posição geográfica atual do celular via GPS
       const localizacao = await Location.getCurrentPositionAsync({
         accuracy: Location.Accuracy.Balanced,
       });
@@ -40,7 +54,7 @@ export default function CardLocalizacao() {
           : null
       );
 
-      // Geocodificação reversa
+      // 4. Geocodificação reversa
       try {
         const respostaEndereco = await Location.reverseGeocodeAsync({
           latitude: lat,
@@ -61,17 +75,26 @@ export default function CardLocalizacao() {
         console.log('Erro na geocodificação reversa:', errGeo);
       }
     } catch (error) {
-      console.log(error);
+      console.log('Erro ao obter localização:', error);
       setMensagem('Não foi possível obter sua localização. Verifique o GPS.');
     } finally {
       setCarregando(false);
     }
   }
 
-  function abrirNoMapa() {
+  async function abrirNoMapa() {
     if (latitude && longitude) {
       const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-      Linking.openURL(url);
+      try {
+        const podeAbrir = await Linking.canOpenURL(url);
+        if (podeAbrir) {
+          await Linking.openURL(url);
+        } else {
+          Alert.alert('Erro', 'Não foi possível abrir o mapa no navegador ou aplicativo.');
+        }
+      } catch (error) {
+        console.log('Erro ao abrir link do mapa:', error);
+      }
     }
   }
 
@@ -89,7 +112,7 @@ export default function CardLocalizacao() {
         <View style={styles.precisaoBadge}>
           <View style={styles.precisaoDot} />
           <Text style={styles.precisaoTexto}>
-            Precisão ± {precisao ? ${precisao}m : '100m'}
+            Precisão ± {precisao ? ${precisao}m : '--'}
           </Text>
         </View>
       </View>
@@ -144,22 +167,18 @@ export default function CardLocalizacao() {
       <Pressable
         style={({ pressed }) => [
           styles.botaoEscuro,
-          pressed && styles.botaoPressionado,
+          carregando && styles.botaoDesabilitado,
+          pressed && !carregando && styles.botaoPressionado,
         ]}
         onPress={obterLocalizacao}
         disabled={carregando}
       >
         {carregando ? (
-          <Ionicons
-            name="hourglass-outline"
-            size={17}
-            color="#FFFFFF"
-            style={styles.btnIcon}
-          />
+          <ActivityIndicator size="small" color="#FFFFFF" style={styles.btnIcon} />
         ) : (
           <Ionicons
-            name="time-outline"
-            size={17}
+            name="compass-outline"
+            size={18}
             color="#FFFFFF"
             style={styles.btnIcon}
           />
@@ -228,7 +247,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#EFF6FF',
     alignItems: 'center',
-    justifyContent: 'center',
+    justify: 'center',
     marginRight: 10,
   },
   cardTitulo: {
@@ -260,7 +279,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8FAFC',
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#E1F5F9',
+    borderColor: '#E2E8F0',
     padding: 16,
     marginBottom: 14,
   },
